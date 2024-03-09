@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import CharacterName from '../CharacterName/CharacterName';
+import CharacterOverview from '../CharacterOverview/CharacterOverview';
+import Equipment from '../Equipment/Equipment';
+import Notes from '../Notes/Notes';
+
 function Character() {
     const dispatch = useDispatch();
 
@@ -9,7 +14,10 @@ function Character() {
       }, []);
 
     return <>
-
+        <h2><CharacterName /></h2>
+        <CharacterOverview />
+        <Equipment />
+        <Notes />
     </>;
 }
 
