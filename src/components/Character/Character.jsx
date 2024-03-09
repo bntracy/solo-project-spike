@@ -14,7 +14,7 @@ function Character() {
       }, []);
 
     return <>
-        <h2><CharacterName /></h2>
+        <CharacterName />
         <CharacterOverview />
         <Equipment />
         <Notes />

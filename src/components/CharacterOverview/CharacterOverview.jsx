@@ -6,6 +6,7 @@ function CharacterOverview() {
         <div>Species: {character.species}</div>
         <div>Gender: {character.gender}</div>
         <div>Physical Description: {character.physical_description}</div>
+        <button>Edit</button>
     </>;
 }
 
