@@ -5,7 +5,8 @@ const pool = require('../modules/pool')
 router.get('/', (req, res) => {
   // Add query to get all genres
   const sqlQuery = `SELECT * FROM "character";`;
-  pool.query(sqlQuery).then(response => {
+  pool.query(sqlQuery)
+  .then(response => {
     res.send(response.rows[0]);
   }).catch(error => {
     console.log('Error in GET', error);
@@ -13,12 +14,18 @@ router.get('/', (req, res) => {
   });
 });
 
-router.put('/overview', (req, res) => {
-  console.log(req.body);
+router.put('/', (req, res) => {
   const sqlQuery = `UPDATE "character"
-    SET "species"=$1, "gender"=$2, "physical_description"=$3
+    SET "character_name"=$1, "species"=$2, "gender"=$3, "physical_description"=$4, "equipment"=$5, "notes"=$6
     WHERE id=1;`;
-  pool.query(sqlQuery, [req.body.species, req.body.gender, req.body.physical_description]).then(response => {
+  pool.query(sqlQuery, [
+    req.body.character_name,
+    req.body.species,
+    req.body.gender,
+    req.body.physical_description,
+    req.body.equipment,
+    req.body.notes])
+  .then(response => {
     res.sendStatus(200);
   }).catch(error => {
     console.log('Error in PUT', error);

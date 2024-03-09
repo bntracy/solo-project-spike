@@ -8,7 +8,7 @@ import axios from 'axios';
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeEvery('FETCH_CHARACTER', fetchCharacter);
-  yield takeEvery('EDIT_OVERVIEW', editOverview);
+  yield takeEvery('UPDATE_CHARACTER', updateCharacter);
 }
 
 function* fetchCharacter() {
@@ -24,13 +24,13 @@ function* fetchCharacter() {
   }
 }
 
-function* editOverview(action) {
+function* updateCharacter(action) {
   try {
-    yield axios.put('/api/character/overview', action.payload);
+    yield axios.put('/api/character/', action.payload);
     yield put({type: 'FETCH_CHARACTER'});
   }
   catch (error) {
-    console.log('Error editing overview:', error);
+    console.log('Error updating character:', error);
   }
 }
 

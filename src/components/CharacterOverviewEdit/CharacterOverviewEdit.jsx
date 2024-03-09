@@ -11,8 +11,9 @@ function CharacterOverviewEdit({setIsEditing}) {
     const handleSave = event => {
         event.preventDefault();
         dispatch({
-            type: 'EDIT_OVERVIEW',
+            type: 'UPDATE_CHARACTER',
             payload: {
+                ...character,
                 species: newSpecies,
                 gender: newGender,
                 physical_description: newPhysicalDescription
