@@ -8,6 +8,7 @@ import axios from 'axios';
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeEvery('FETCH_CHARACTER', fetchCharacter);
+  yield takeEvery('EDIT_OVERVIEW', editOverview);
 }
 
 function* fetchCharacter() {
@@ -20,6 +21,16 @@ function* fetchCharacter() {
   }
   catch (error) {
     console.log('fetchCharacter error:', error);
+  }
+}
+
+function* editOverview(action) {
+  try {
+    yield axios.put('/api/character/overview', action.payload);
+    yield put({type: 'FETCH_CHARACTER'});
+  }
+  catch (error) {
+    console.log('Error editing overview:', error);
   }
 }
 
