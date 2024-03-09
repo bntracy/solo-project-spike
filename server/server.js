@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const characterRouter = require('./routes/character.router.js');
 const movieRouter = require('./routes/movie.router.js')
 const genreRouter = require('./routes/genre.router.js')
 const PORT = process.env.PORT || 5001;
@@ -11,7 +12,8 @@ app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
 app.use('/api/movies', movieRouter);
-app.use('/api/genres', genreRouter)
+app.use('/api/genres', genreRouter);
+app.use('/api/character', characterRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {

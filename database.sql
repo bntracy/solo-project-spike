@@ -75,3 +75,17 @@ VALUES
 (12,6), (12,3),           -- Social Net
 (13,6), (13,10), (13,1),  -- Titanic
 (14,1), (14,2), (14,4);   -- Toy Story
+
+
+CREATE TABLE "character" (
+  "id" SERIAL PRIMARY KEY,
+  "character_name" VARCHAR(100),
+  "species" VARCHAR(50),
+  "gender" VARCHAR(50),
+  "physical_description" VARCHAR(1000),
+  "equipment" TEXT,
+  "notes" TEXT
+);
+
+INSERT INTO "character" ("character_name", "species", "gender", "physical_description", "equipment", "notes")
+  VALUES ('Hildie', 'human', 'female', 'nondescript', 'no equipment', 'no notes');
