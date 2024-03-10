@@ -17,8 +17,8 @@ function Character() {
     return <>
         <CharacterName />
         <CharacterOverview />
-        <Attribute attribute="Dexterity" dice="dexterity_dice" bonus="dexterity_bonus"/>
-        <Attribute attribute="Perception" dice="perception_dice" bonus="perception_bonus"/>
+        <Attribute attribute="Dexterity" dice="dexterity_dice" bonus="dexterity_bonus" skills="dexterity_skills"/>
+        <Attribute attribute="Perception" dice="perception_dice" bonus="perception_bonus" skills="perception_skills"/>
         <Equipment />
         <Notes />
     </>;
