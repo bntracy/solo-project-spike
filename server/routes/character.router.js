@@ -39,13 +39,18 @@ router.get('/', (req, res) => {
 
 router.put('/', (req, res) => {
   const sqlQuery = `UPDATE "character"
-    SET "character_name"=$1, "species"=$2, "gender"=$3, "physical_description"=$4, "equipment"=$5, "notes"=$6
+    SET "character_name"=$1, "species"=$2, "gender"=$3, "physical_description"=$4,
+    "dexterity_dice"=$5, "dexterity_bonus"=$6, "perception_dice"=$7, "perception_bonus"=$8, "equipment"=$9, "notes"=$10
     WHERE id=1;`;
   pool.query(sqlQuery, [
     req.body.character_name,
     req.body.species,
     req.body.gender,
     req.body.physical_description,
+    req.body.dexterity_dice,
+    req.body.dexterity_bonus,
+    req.body.perception_dice,
+    req.body.perception_bonus,
     req.body.equipment,
     req.body.notes])
   .then(response => {

@@ -9,10 +9,10 @@ function Attribute( {attribute, dice, bonus, skills} ) {
     const [isEditing, setIsEditing] = useState(false);
 
     return <>
-        {isEditing ? <AttributeEdit attribute={attribute} dice={dice} bonus={bonus} skills={skills} setIsEditing={setIsEditing}/> : <>
+        {isEditing ? <AttributeEdit attribute={attribute} dice={dice} bonus={bonus} setIsEditing={setIsEditing}/> : <>
             <h4>{attribute}: {character[dice]}D{character[bonus] > 0 && <>+{character[bonus]}</>}</h4>
-            {character[skills]?.length > 0 && <ul>{character[skills].map(skill => <Skill key={skill.id} skill={skill}/>)}</ul>}
             <button onClick={() => setIsEditing(true)}>Edit</button>
+            {character[skills]?.length > 0 && <ul>{character[skills].map(skill => <Skill key={skill.id} skill={skill}/>)}</ul>}
             </>}
     </>;
 }
