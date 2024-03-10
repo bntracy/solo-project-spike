@@ -4,7 +4,7 @@ function Attribute( {attribute, dice, bonus} ) {
     const character = useSelector(store => store.character);
 
     return <>
-        <h4>{attribute}: {character[dice]}D+{character[bonus]}</h4>
+        <h4>{attribute}: {character[dice]}D{character[bonus] > 0 && <>+{character[bonus]}</>}</h4>
     </>;
 }
 
