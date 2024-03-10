@@ -19,7 +19,7 @@ function TextareaEdit( {setIsEditing, propertyToChange} ) {
     }
 
     return <>
-        <form onSubmit={() => handleSave(event)}>
+        <form onSubmit={event => handleSave(event)}>
             <textarea defaultValue={value} onChange={event => setValue(event.target.value)}></textarea>
             <button>Save</button>
             <button onClick={()=>setIsEditing(false)}>Cancel</button>

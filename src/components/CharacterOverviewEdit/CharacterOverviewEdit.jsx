@@ -23,7 +23,7 @@ function CharacterOverviewEdit({setIsEditing}) {
     }
 
     return <>
-        <form onSubmit={() => handleSave(event)}>
+        <form onSubmit={event => handleSave(event)}>
             <div>
                 <label>Species: </label>
                 <input type="text" value={newSpecies} onChange={event => setNewSpecies(event.target.value)}/>

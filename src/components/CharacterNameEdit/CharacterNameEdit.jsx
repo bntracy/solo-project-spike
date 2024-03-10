@@ -19,7 +19,7 @@ function CharacterNameEdit( {setIsEditing} ) {
     }
 
     return <>
-        <form onSubmit={() => handleSave(event)}>
+        <form onSubmit={event => handleSave(event)}>
             <div>
                 <label>Character Name:</label>
                 <input type="text" required value={newName} onChange={event => setNewName(event.target.value)}/>
