@@ -3,11 +3,21 @@ const router = express.Router();
 const pool = require('../modules/pool')
 
 router.get('/', (req, res) => {
-  // Add query to get all genres
-  const sqlQuery = `SELECT * FROM "character";`;
-  pool.query(sqlQuery)
+  const firstSqlQuery = `SELECT * FROM "character" WHERE id=1;`;
+  const secondSqlQuery = `SELECT "skill_name", "associated_attribute", "skill_dice", "skill_bonus" FROM "skills" WHERE character_id = 1;`;
+  pool.query(firstSqlQuery)
   .then(response => {
-    res.send(response.rows[0]);
+    let character = response.rows[0];
+    // res.send(response.rows[0]);
+    pool.query(secondSqlQuery)
+    .then(secondResponse => {
+      character.skills = secondResponse.rows;
+      console.log(character);
+      res.send(character);
+    }).catch(error => {
+      console.log('Error in second query', error);
+      res.sendStatus(500);
+    });
   }).catch(error => {
     console.log('Error in GET', error);
     res.sendStatus(500);
