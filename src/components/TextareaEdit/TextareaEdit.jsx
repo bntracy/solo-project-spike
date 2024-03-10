@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-function CharacterNameEdit( {setIsEditing} ) {
+function TextareaEdit( {setIsEditing, propertyToChange} ) {
     const dispatch = useDispatch();
     const character = useSelector(store => store.character);
-    const [newName, setNewName] = useState(character.character_name);
+    const [value, setValue] = useState(character[propertyToChange]);
 
     const handleSave = event => {
         event.preventDefault();
@@ -12,7 +12,7 @@ function CharacterNameEdit( {setIsEditing} ) {
             type: 'UPDATE_CHARACTER',
             payload: {
                 ...character,
-                character_name: newName
+                [propertyToChange]: value
             }
         });
         setIsEditing(false);
@@ -20,14 +20,11 @@ function CharacterNameEdit( {setIsEditing} ) {
 
     return <>
         <form onSubmit={() => handleSave(event)}>
-            <div>
-                <label>Character Name:</label>
-                <input type="text" required value={newName} onChange={event => setNewName(event.target.value)}/>
-            </div>
+            <textarea defaultValue={value} onChange={event => setValue(event.target.value)}></textarea>
             <button>Save</button>
             <button onClick={()=>setIsEditing(false)}>Cancel</button>
         </form>
     </>;
 }
 
-export default CharacterNameEdit;
+export default TextareaEdit;

@@ -25,16 +25,16 @@ function CharacterOverviewEdit({setIsEditing}) {
     return <>
         <form onSubmit={() => handleSave(event)}>
             <div>
-                <label htmlFor="species">Species: </label>
-                <input type="text" name="species" value={newSpecies} onChange={event => setNewSpecies(event.target.value)}/>
+                <label>Species: </label>
+                <input type="text" value={newSpecies} onChange={event => setNewSpecies(event.target.value)}/>
             </div>
             <div>
-                <label htmlFor="gender">Gender: </label>
-                <input type="text" name="gender" value={newGender} onChange={event => setNewGender(event.target.value)}/>
+                <label>Gender: </label>
+                <input type="text" value={newGender} onChange={event => setNewGender(event.target.value)}/>
             </div>
             <div>
-                <label htmlFor="physical-description">Physical Description: </label>
-                <input type="text" name="physical-description" value={newPhysicalDescription} onChange={event => setNewPhysicalDescription(event.target.value)}/>
+                <label>Physical Description: </label>
+                <input type="text" value={newPhysicalDescription} onChange={event => setNewPhysicalDescription(event.target.value)}/>
             </div>
             <button>Save</button>
             <button onClick={()=>setIsEditing(false)}>Cancel</button>
