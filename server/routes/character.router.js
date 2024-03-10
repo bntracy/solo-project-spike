@@ -4,7 +4,7 @@ const pool = require('../modules/pool')
 
 router.get('/', (req, res) => {
   const firstSqlQuery = `SELECT * FROM "character" WHERE id=1;`;
-  const secondSqlQuery = `SELECT "skill_name", "associated_attribute", "skill_dice", "skill_bonus" FROM "skills" WHERE character_id = 1;`;
+  const secondSqlQuery = `SELECT "id", "skill_name", "associated_attribute", "skill_dice", "skill_bonus" FROM "skills" WHERE character_id = 1;`;
   pool.query(firstSqlQuery)
   .then(response => {
     let character = response.rows[0];
