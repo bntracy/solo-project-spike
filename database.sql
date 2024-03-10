@@ -83,9 +83,29 @@ CREATE TABLE "character" (
   "species" VARCHAR(50),
   "gender" VARCHAR(50),
   "physical_description" VARCHAR(1000),
+  "dexterity_dice" INTEGER,
+  "dexterity_bonus" INTEGER,
+  "perception_dice" INTEGER,
+  "perception_bonus" INTEGER,
   "equipment" TEXT,
   "notes" TEXT
 );
 
-INSERT INTO "character" ("character_name", "species", "gender", "physical_description", "equipment", "notes")
-  VALUES ('Hildie', 'human', 'female', 'nondescript', 'no equipment', 'no notes');
+INSERT INTO "character" ("character_name", "species", "gender", "physical_description", 
+  "dexterity_dice", "dexterity_bonus", "perception_dice", "perception_bonus", "equipment", "notes")
+  VALUES ('Hildie', 'human', 'female', 'nondescript', 3, 1, 3, 0, 'no equipment', 'no notes');
+
+CREATE TABLE "skills" (
+  "id" SERIAL PRIMARY KEY,
+  "character_id" INTEGER NOT NULL REFERENCES "character",
+  "skill_name" VARCHAR(100),
+  "associated_attribute" VARCHAR(10),
+  "skill_dice" INTEGER,
+  "skill_bonus" INTEGER
+);
+
+INSERT INTO "skills" ("character_id", "skill_name", "associated_attribute", "skill_dice", "skill_bonus")
+  VALUES
+    (1, 'Blaster', 'Dexterity', 4, 1),
+    (1, 'Dodge', 'Dexterity', 4, 1),
+    (1, 'Con', 'Perception', 4, 0);
