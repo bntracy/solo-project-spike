@@ -4,7 +4,8 @@ const pool = require('../modules/pool')
 
 router.get('/', (req, res) => {
   const firstSqlQuery = `SELECT * FROM "character" WHERE id=1;`;
-  const secondSqlQuery = `SELECT "id", "skill_name", "associated_attribute", "skill_dice", "skill_bonus" FROM "skills" WHERE character_id = 1;`;
+  const secondSqlQuery = `SELECT "id", "skill_name", "associated_attribute", "skill_dice", "skill_bonus" FROM "skills"
+    WHERE character_id = 1 ORDER BY "id";`;
   pool.query(firstSqlQuery)
   .then(response => {
     const character = response.rows[0];
@@ -25,7 +26,6 @@ router.get('/', (req, res) => {
             break;
         }
       }
-      console.log(character);
       res.send(character);
     }).catch(error => {
       console.log('Error in second query', error);
@@ -57,6 +57,19 @@ router.put('/', (req, res) => {
     res.sendStatus(200);
   }).catch(error => {
     console.log('Error in PUT', error);
+    res.sendStatus(500);
+  });
+});
+
+router.put('/skill', (req, res) => {
+  console.log(req.body);
+  const sqlQuery = `UPDATE "skills" SET "skill_name"=$1, "skill_dice"=$2, "skill_bonus"=$3
+    WHERE id=$4;`;
+  pool.query(sqlQuery, [req.body.skill_name, req.body.skill_dice, req.body.skill_bonus, req.body.id])
+  .then(response => {
+    res.sendStatus(200);
+  }).catch(error => {
+    console.log('Error in skills PUT', error);
     res.sendStatus(500);
   });
 });

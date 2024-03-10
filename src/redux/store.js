@@ -9,6 +9,7 @@ function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
   yield takeEvery('FETCH_CHARACTER', fetchCharacter);
   yield takeEvery('UPDATE_CHARACTER', updateCharacter);
+  yield takeEvery('UPDATE_SKILL', updateSkill);
 }
 
 function* fetchCharacter() {
@@ -31,6 +32,16 @@ function* updateCharacter(action) {
   }
   catch (error) {
     console.log('Error updating character:', error);
+  }
+}
+
+function* updateSkill(action) {
+  try {
+    yield axios.put('/api/character/skill', action.payload);
+    yield put({type: 'FETCH_CHARACTER'});
+  }
+  catch (error) {
+    console.log('Error updating skill:', error);
   }
 }
 
