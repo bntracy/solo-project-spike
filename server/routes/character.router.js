@@ -7,11 +7,24 @@ router.get('/', (req, res) => {
   const secondSqlQuery = `SELECT "id", "skill_name", "associated_attribute", "skill_dice", "skill_bonus" FROM "skills" WHERE character_id = 1;`;
   pool.query(firstSqlQuery)
   .then(response => {
-    let character = response.rows[0];
+    const character = response.rows[0];
     // res.send(response.rows[0]);
     pool.query(secondSqlQuery)
     .then(secondResponse => {
-      character.skills = secondResponse.rows;
+      // skills will be an array of objects. Each object represents one skill
+      const skills = secondResponse.rows;
+      character.dexterity_skills = [];
+      character.perception_skills = [];
+      for (let skill of skills) {
+        switch (skill.associated_attribute) {
+          case 'Dexterity':
+            character.dexterity_skills.push(skill);
+            break;
+          case 'Perception':
+            character.perception_skills.push(skill);
+            break;
+        }
+      }
       console.log(character);
       res.send(character);
     }).catch(error => {
